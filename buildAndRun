@@ -1,0 +1,20 @@
+#/bin/bash 
+
+if [ -z $1 ]; then 
+  echo -e "ERROR: you didn't selected output docker image name"
+  echo -e "Usage: $0 imageName"
+  exit -1
+fi
+
+docker build -t $1 .
+#use -priviledged option to be possible to run docker in docker containers
+docker run --rm=true --name test -i --privileged -t $1 /bin/bash
+
+echo "==================================================="
+echo "                   DOCKER IMAGES"
+echo "==================================================="
+docker images
+echo "==================================================="
+echo "                   DOCKER CONTAINERS"
+echo "==================================================="
+docker ps -a
