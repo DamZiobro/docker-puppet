@@ -11,8 +11,7 @@ RUN useradd -ms /bin/bash $USER && adduser $USER sudo && echo 'docker:docker123'
 
 EXPOSE 22 80 
 
-RUN rm -rf /etc/puppet
-ADD puppet /etc/puppet
+ADD puppet/manifests/* /etc/puppet/manifests/
 
 #========================================================
 # switching to user docker
